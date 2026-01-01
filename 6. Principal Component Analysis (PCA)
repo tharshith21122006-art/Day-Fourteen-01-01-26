@@ -1,0 +1,11 @@
+import numpy as np
+
+X = np.array([[2,3],[3,4],[4,5],[5,6]])
+mean = np.mean(X, axis=0)
+X_centered = X - mean
+
+cov = np.cov(X_centered.T)
+eig_val, eig_vec = np.linalg.eig(cov)
+
+print("Eigen Values:", eig_val)
+print("Eigen Vectors:\n", eig_vec)
