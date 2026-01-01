@@ -1,0 +1,23 @@
+import math
+
+data = [
+    ("Sunny","Hot","High","No"),
+    ("Sunny","Hot","High","No"),
+    ("Overcast","Hot","High","Yes"),
+    ("Rain","Mild","High","Yes")
+]
+
+def classify(sample):
+    classes = set(row[-1] for row in data)
+    probs = {}
+
+    for c in classes:
+        probs[c] = 1
+        for i in range(len(sample)):
+            match = sum(1 for row in data if row[i]==sample[i] and row[-1]==c)
+            total = sum(1 for row in data if row[-1]==c)
+            probs[c] *= (match+1)/(total+len(data))
+
+    return max(probs, key=probs.get)
+
+print(classify(("Sunny","Hot","High")))
