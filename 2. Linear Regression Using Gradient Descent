@@ -1,0 +1,19 @@
+import random
+
+x = [1,2,3,4,5]
+y = [2,4,6,8,10]
+
+m, b = 0, 0
+lr = 0.01
+
+for _ in range(1000):
+    dm = db = 0
+    n = len(x)
+    for i in range(n):
+        dm += -2 * x[i] * (y[i] - (m*x[i] + b))
+        db += -2 * (y[i] - (m*x[i] + b))
+    m -= (dm/n) * lr
+    b -= (db/n) * lr
+
+print("Slope:", m)
+print("Intercept:", b)
