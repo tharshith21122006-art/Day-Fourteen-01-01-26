@@ -1,0 +1,20 @@
+import random
+
+inputs = [(0,0),(0,1),(1,0),(1,1)]
+outputs = [0,0,0,1]
+
+weights = [random.random(), random.random()]
+bias = random.random()
+lr = 0.1
+
+for _ in range(1000):
+    for x, y in zip(inputs, outputs):
+        y_pred = sum(w*i for w,i in zip(weights,x)) + bias
+        y_pred = 1 if y_pred > 0.5 else 0
+        error = y - y_pred
+        for i in range(len(weights)):
+            weights[i] += lr * error * x[i]
+        bias += lr * error
+
+print("Weights:", weights)
+print("Bias:", bias)
